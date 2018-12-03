@@ -1,4 +1,4 @@
-FROM evindunn/jenkins-worker:centos-7
+FROM usgsastro/jenkins-worker:centos-7
 
 ENV CONDA_HOME /home/jenkins/conda
 ENV PATH $CONDA_HOME/bin:$PATH

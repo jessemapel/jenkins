@@ -1,4 +1,4 @@
-FROM evindunn/jenkins-worker:ubuntu-1804
+FROM usgsastro/jenkins-worker:ubuntu-1804
 
 ENV CONDA_HOME /home/jenkins/conda
 ENV PATH $CONDA_HOME/bin:$PATH

@@ -1,4 +1,4 @@
-FROM evindunn/jenkins-worker:fedora-25
+FROM usgsastro/jenkins-worker:fedora-25
 
 ENV CONDA_HOME /home/jenkins/conda
 ENV PATH $CONDA_HOME/bin:$PATH

@@ -1,4 +1,4 @@
-FROM evindunn/jenkins-worker:debian-9
+FROM usgsastro/jenkins-worker:debian-9
 
 ENV CONDA_HOME /home/jenkins/conda
 ENV PATH $CONDA_HOME/bin:$PATH
