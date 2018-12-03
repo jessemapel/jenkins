@@ -1,0 +1,30 @@
+FROM evindunn/jenkins-worker:fedora-25
+
+ENV CONDA_HOME /home/jenkins/conda
+ENV PATH $CONDA_HOME/bin:$PATH
+
+USER root
+
+RUN dnf update -y
+RUN dnf install -y      \
+    git                 \
+    gcc-c++             \
+    bzip2               \
+    ca-certificates     \
+    which               \
+    xorg-x11-apps       \
+    mesa-libGL          \
+    mesa-libGLU-devel
+
+USER jenkins
+WORKDIR /home/jenkins
+
+RUN curl -s -o ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN /bin/bash ~/miniconda.sh -b -p $CONDA_HOME
+RUN rm ~/miniconda.sh
+
+RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda-usgs-astrogeology
+RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda-forge
+RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda
+
+RUN conda update conda -y
