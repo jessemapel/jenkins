@@ -23,8 +23,4 @@ RUN curl -s -o ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-lat
 RUN /bin/bash ~/miniconda.sh -b -p $CONDA_HOME
 RUN rm ~/miniconda.sh
 
-RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda-usgs-astrogeology
-RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda-forge
-RUN conda config --prepend channels http://astro-bin.wr.usgs.gov/conda
-
 RUN conda update conda -y
