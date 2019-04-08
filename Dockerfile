@@ -17,10 +17,13 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update -y
 RUN apt-get install docker-ce -y
+RUN usermod -aG docker jenkins
 
 # The default jenkins image has no repos configured, so get rid of all
 # the repos we added above for updates
 RUN echo '' > /etc/apt/sources.list
 RUN apt-get autoclean -y
 RUN rm -rf /var/cache/apt/archives/*
+
+USER jenkins
 
