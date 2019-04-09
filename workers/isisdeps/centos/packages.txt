@@ -1,0 +1,8 @@
+bzip2
+ca-certificates
+gcc-c++
+git
+mesa-libGL
+mesa-libGLU-devel
+which
+xorg-x11-apps
