@@ -1,20 +1,29 @@
 FROM usgsastro/jenkins-worker:centos
 
-ENV CONDA_HOME /home/jenkins/conda
+SHELL ["/bin/bash", "-c"]
+ENV CONDA_HOME /home/jenkins/.conda
+ENV PATH $CONDA_HOME/bin:$PATH
 
 USER root
 
-COPY packages.txt .
-RUN bash -c 'yum install $(sed -E -e "s/#.*$//g" -e "/^$/d" /tmp/packages.txt | tr "\n" " ") -y'
+RUN yum update -y &&                \
+    yum install -y                  \
+        bzip2                       \
+        ca-certificates             \
+        curl                        \
+        git                         \
+        wget &&                     \
+    yum clean all
 
 USER jenkins
+WORKDIR /home/jenkins
 
 # Install conda
-RUN curl -s -o miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh &&    \
-    bash miniconda.sh -b -p $CONDA_HOME &&                                                             \
-    echo '. $CONDA_HOME/etc/profile.d/conda.sh' >> ~/.bashrc &&                                             \
-    source ~/.bashrc &&                                                                                     \
-    conda update conda -y
+RUN wget -qO miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh &&      \
+    chmod +x miniconda.sh &&                                                                            \
+    ./miniconda.sh -b -p $CONDA_HOME &&                                                                 \
+    $CONDA_HOME/bin/conda clean -tipsy &&                                                               \
+    echo ". \$CONDA_HOME/etc/profile.d/conda.sh" >> ~/.bashrc &&                                        \
+    echo "conda activate base" >> ~/.bashrc &&                                                          \
+    rm miniconda.sh
 
-# Clean up
-RUN bash -c 'rm packages.txt miniconda.sh'

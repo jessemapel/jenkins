@@ -1,7 +1,0 @@
-bzip2
-ca-certificates
-git
-gcc
-libgl1-mesa-glx
-libglu1-mesa-dev
-x11-apps

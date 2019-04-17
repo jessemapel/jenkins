@@ -1,21 +1,29 @@
 FROM usgsastro/jenkins-worker:debian
 
-ENV CONDA_HOME /home/jenkins/conda
+SHELL ["/bin/bash", "-c"]
+ENV CONDA_HOME /home/jenkins/.conda
+ENV PATH $CONDA_HOME/bin:$PATH
 
 USER root
 
-# Install linux dependencies
-COPY packages.txt /tmp/
-RUN bash -c 'apt-get update && apt-get install $(sed -E -e "s/#.*$//g" -e "/^$/d" /tmp/packages.txt | tr "\n" " ") -y'
+RUN apt-get update && apt-get install -y    \
+        bzip2                               \
+        ca-certificates                     \
+        curl                                \
+        git                                 \
+        wget &&                             \
+    apt-get clean &&                        \
+    rm -rf /var/lib/apt/lists/*
 
 USER jenkins
+WORKDIR /home/jenkins
 
 # Install conda
-RUN curl -s -o /tmp/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh &&    \
-    bash /tmp/miniconda.sh -b -p $CONDA_HOME &&                                                             \
-    echo '. $CONDA_HOME/etc/profile.d/conda.sh' >> ~/.bashrc &&                                             \
-    source ~/.bashrc &&                                                                                     \
-    conda update conda -y
+RUN wget -qO miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh &&      \
+    chmod +x miniconda.sh &&                                                                            \
+    ./miniconda.sh -b -p $CONDA_HOME &&                                                                 \
+    $CONDA_HOME/bin/conda clean -tipsy &&                                                               \
+    echo ". \$CONDA_HOME/etc/profile.d/conda.sh" >> ~/.bashrc &&                                        \
+    echo "conda activate base" >> ~/.bashrc &&                                                          \
+    rm miniconda.sh
 
-# Clean up
-RUN bash -c 'rm /tmp/{packages.txt,miniconda.sh}'
