@@ -8,9 +8,9 @@ RUN apt-get update &&                               \
 
 ADD https://raw.githubusercontent.com/jenkinsci/docker-jnlp-slave/master/jenkins-slave  \
     /usr/local/bin/jenkins-slave
-RUN chmod +x /usr/local/bin/jenkins-slave
 
 RUN useradd -m -s /bin/bash jenkins
-USER jenkins
+RUN chown jenkins:jenkins /usr/local/bin/jenkins-slave && chmod +x /usr/local/bin/jenkins-slave
 
+USER jenkins
 ENTRYPOINT ["/usr/local/bin/jenkins-slave"]
