@@ -11,6 +11,8 @@ RUN dnf update -y &&                \
         bzip2                       \
         ca-certificates             \
         curl                        \
+        build-essential             \
+        libgl1-mesa-glx             \
         git &&                      \
     dnf clean all
 
