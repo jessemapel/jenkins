@@ -1,6 +1,6 @@
 # Jenkins with Docker
 
-Jenkins LTS image with Docker installed
+Master branch is the Jenkins LTS docker image with Docker installed
 
 Jenkins build agent ('worker') docker images are also included
 
