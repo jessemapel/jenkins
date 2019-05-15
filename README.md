@@ -1,6 +1,6 @@
 # Jenkins with Docker
 
-Master branch is the Jenkins LTS docker image with Docker installed
+Master branch is the Jenkins LTS docker image with Docker installed [usgsastro/jenkins](https://cloud.docker.com/u/usgsastro/repository/docker/usgsastro/jenkins)
 
 Jenkins build agent ('worker') docker images are also included
 
