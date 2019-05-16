@@ -6,14 +6,14 @@ ENV PATH $CONDA_HOME/bin:$PATH
 
 USER root
 
-RUN dnf update -y &&                        \
-    dnf groupinstall "Development Tools" && \
-    dnf install -y                          \
-        bzip2                               \
-        ca-certificates                     \
-        curl                                \
-        libgl1-mesa-glx                     \
-        git &&                              \
+RUN dnf update -y &&                            \
+    dnf groupinstall -y "Development Tools" &&  \
+    dnf install -y                              \
+        bzip2                                   \
+        ca-certificates                         \
+        curl                                    \
+        libgl1-mesa-glx                         \
+        git &&                                  \
     dnf clean all
 
 # Install conda
