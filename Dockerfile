@@ -7,6 +7,7 @@ ENV PATH $CONDA_HOME/bin:$PATH
 USER root
 
 RUN apt-get update && apt-get install -y    \
+        build-essential                     \
         bzip2                               \
         ca-certificates                     \
         curl                                \
