@@ -6,12 +6,13 @@ ENV PATH $CONDA_HOME/bin:$PATH
 
 USER root
 
-RUN yum update -y &&                \
-    yum install -y                  \
-        bzip2                       \
-        ca-certificates             \
-        curl                        \
-        git &&                      \
+RUN yum update -y &&                            \
+    yum group install -y "Development Tools" && \
+    yum install -y                              \
+        bzip2                                   \
+        ca-certificates                         \
+        curl                                    \
+        git &&                                  \
     yum clean all
 
 # Install conda
