@@ -12,6 +12,7 @@ RUN yum update -y &&                            \
         bzip2                                   \
         ca-certificates                         \
         curl                                    \
+        mesa-libGL-devel                        \
         git &&                                  \
     yum clean all
 
