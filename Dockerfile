@@ -12,6 +12,7 @@ RUN dnf update -y &&                            \
         bzip2                                   \
         ca-certificates                         \
         curl                                    \
+        gcc-c++                                 \
         mesa-libGL-devel                        \
         git &&                                  \
     dnf clean all
