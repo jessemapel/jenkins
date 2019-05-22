@@ -13,6 +13,7 @@ RUN dnf update -y &&                            \
         ca-certificates                         \
         curl                                    \
         gcc-c++                                 \
+        libnsl                                  \
         mesa-libGL-devel                        \
         git &&                                  \
     dnf clean all
