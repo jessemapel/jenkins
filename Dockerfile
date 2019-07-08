@@ -1,5 +1,7 @@
 FROM fedora:latest
 
+ENV VERSION 3.9
+
 RUN dnf update -y &&                                \
     dnf install java-1.8.0-openjdk-headless -y &&   \
     dnf clean all
