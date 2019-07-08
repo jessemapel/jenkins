@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+ENV VERSION 3.9
+
 RUN apt-get update &&                               \
     apt-get dist-upgrade -y &&                      \
     apt-get install openjdk-8-jre-headless -y &&    \
