@@ -25,5 +25,10 @@ RUN echo '' > /etc/apt/sources.list
 RUN apt-get autoclean -y
 RUN rm -rf /var/cache/apt/archives/*
 
+# Allow a bunch of scripts to be executed at runtime
+ADD docker-entrypoint.sh /usr/local/bin
+RUN mkdir /docker-entrypoint.d && chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
+
 USER jenkins
 
