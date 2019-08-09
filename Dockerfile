@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y    \
         curl                                \
         git                                 \
         libgl1-mesa-glx                     \
+	vim-common			    \
+	findutils			    \
         wget &&                             \
     apt-get clean &&                        \
     rm -rf /var/lib/apt/lists/*
