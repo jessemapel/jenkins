@@ -15,6 +15,8 @@ RUN dnf update -y &&                            \
         gcc-c++                                 \
         libnsl                                  \
         mesa-libGL-devel                        \
+        vim-common                              \
+        findutils                               \
         git &&                                  \
     dnf clean all
 
