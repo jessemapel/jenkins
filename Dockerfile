@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:28
 
 ENV VERSION 3.9
 
