@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y    \
         git                                 \
         build-essential                     \
         libgl1-mesa-glx                     \
+        ninja-build                         \
         vim-common                          \
         findutils                           \
         wget &&                             \
@@ -30,4 +31,3 @@ RUN wget -qO miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-
     echo ". \$CONDA_HOME/etc/profile.d/conda.sh" >> ~/.bashrc &&                                        \
     echo "conda activate base" >> ~/.bashrc &&                                                          \
     rm miniconda.sh
-
